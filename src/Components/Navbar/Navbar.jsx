@@ -15,6 +15,7 @@ const Navbar = () => {
     const [name,setName] = useState('Login')
     // const context=useContext(store)
     
+    const token = sessionStorage.getItem('Token')
     useEffect(()=>{
         const token = sessionStorage.getItem('Token')
         //    setInterval(()=>{
