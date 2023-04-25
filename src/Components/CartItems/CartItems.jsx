@@ -1,7 +1,7 @@
 import axios from 'axios'
 import React from 'react'
 import { useState } from 'react'
-import { useEffect } from 'react'
+import { useEffect,useMemo } from 'react'
 import './Cart.css'
 
 const CartItems = () => {
@@ -10,27 +10,31 @@ const CartItems = () => {
     // const context=useContext(store)
     useEffect(()=>{
       const token = sessionStorage.getItem('Token')
-      setInterval(()=>{
+      // setInterval(()=>{
         axios.post('https://e-commerce-backend-ueee.onrender.com/getorder',{token:token})
       .then((res)=>setOrder(res.data.orders))
-      },100)
+      // },100)
     },[])
     // console.log(order)
 
 
       var sum = 0
-      order && order.forEach((x)=>sum = sum +parseInt(x.price.split('').splice(1).filter((x)=>x!==',').join(''),10)*x.qty)
+      useMemo(() => {
+        order && order.forEach((x)=>sum = sum +parseInt(x.price.split('').splice(1).filter((x)=>x!==',').join(''),10)*x.qty)
       // console.log(sum)
+      }, [order])
 
 
 
 
-    const handleClick =  (data)=>{
+    const handleClick = async (data)=>{
       const token  = sessionStorage.getItem('Token')
       setPost(post+1)
-       axios.put('https://e-commerce-backend-ueee.onrender.com/order',{data:data,token:token})
+      await axios.put('https://e-commerce-backend-ueee.onrender.com/order',{data:data,token:token})
       // .then((res)=>console.log(res))
       .catch((err)=>console.log(err))
+      await axios.post('https://e-commerce-backend-ueee.onrender.com/getorder',{token:token})
+      .then((res)=>setOrder(res.data.orders))
     }
   return (
     <div className='cartcon'>

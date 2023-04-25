@@ -12,25 +12,26 @@ import axios, { AxiosHeaders } from 'axios'
 
 const Navbar = () => {
     const ul=useRef()
+    const [count,setCount] = useState(0)
     const [nav,setNav]=useState(false)
     const [items,setitems]=useState(0)
     const [name,setName] = useState('Login')
     // const context=useContext(store)
 
+    const token = sessionStorage.getItem('Token')
     useEffect(()=>{
-            const token = sessionStorage.getItem('Token')
            setInterval(()=>{
             axios.post(`https://e-commerce-backend-ueee.onrender.com/auth`,{token:token})
             .then((res)=>setName(res.data.name))
-           },500)
-    },[])
+           },100)
+    },[token])
 
     useEffect(()=>{
-        const token = sessionStorage.getItem('Token')
+        // const token = sessionStorage.getItem('Token')
         setInterval(()=>{
         axios.post(`https://e-commerce-backend-ueee.onrender.com/getorder`,{token:token})
         .then((res)=>setitems(res.data.orders.length))
-        },500)
+        },100)
     },[items])
 
     // useEffect(()=>{
