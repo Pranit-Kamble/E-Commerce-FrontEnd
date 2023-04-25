@@ -28,7 +28,7 @@ const Home = () => {
   }
   const handleclick= async  (order)=>{
       var token = sessionStorage.getItem('Token')
-      await axios.post('http://localhost:4000/order',{order:order,token:token})
+      await axios.post('https://e-commerce-backend-ueee.onrender.com/order',{order:order,token:token})
       .then((res)=>console.log(res.data))
       .catch((err)=>console.log(err))
   }

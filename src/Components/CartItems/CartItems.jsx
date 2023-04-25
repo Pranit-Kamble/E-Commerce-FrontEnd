@@ -10,7 +10,7 @@ const CartItems = () => {
     // const context=useContext(store)
     useEffect(()=>{
       const token = sessionStorage.getItem('Token')
-       axios.post('http://localhost:4000/getorder',{token:token})
+       axios.post('https://e-commerce-backend-ueee.onrender.com/getorder',{token:token})
       .then((res)=>setOrder(res.data.orders))
     },[post])
     // console.log(order)
@@ -26,7 +26,7 @@ const CartItems = () => {
     const handleClick =  (data)=>{
       const token  = sessionStorage.getItem('Token')
       setPost(post+1)
-       axios.put('http://localhost:4000/order',{data:data,token:token})
+       axios.put('https://e-commerce-backend-ueee.onrender.com/order',{data:data,token:token})
       // .then((res)=>console.log(res))
       .catch((err)=>console.log(err))
     }

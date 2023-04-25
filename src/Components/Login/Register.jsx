@@ -22,7 +22,7 @@ const Register = () => {
   const handlesubmit = async (e) =>{
     e.preventDefault();
     
-    const result = await axios.post('http://localhost:4000/register',{name,email,password})
+    const result = await axios.post('https://e-commerce-backend-ueee.onrender.com/register',{name,email,password})
     .then((res)=>res.data)
     .catch((err)=>console.log(err))
     // console.log(result)

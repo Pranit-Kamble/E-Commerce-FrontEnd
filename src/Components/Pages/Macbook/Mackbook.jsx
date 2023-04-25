@@ -7,7 +7,7 @@ const Mackbook = () => {
     // const context=useContext(store)
     const [data,setData]=useState('')
     useEffect(()=>{
-      axios.post('http://localhost:4000/getproduct')
+      axios.post('https://e-commerce-backend-ueee.onrender.com/getproduct')
     .then((res)=>setData(res.data))
   },[])
 

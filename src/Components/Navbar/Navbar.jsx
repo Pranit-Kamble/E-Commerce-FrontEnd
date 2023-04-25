@@ -19,13 +19,13 @@ const Navbar = () => {
 
     useEffect(()=>{
             const token = sessionStorage.getItem('Token')
-            axios.post(`http://localhost:4000/auth`,{token:token})
+            axios.post(`https://e-commerce-backend-ueee.onrender.com/auth`,{token:token})
             .then((res)=>setName(res.data.name))
     },[])
 
     useEffect(()=>{
         const token = sessionStorage.getItem('Token')
-            axios.post(`http://localhost:4000/getorder`,{token:token})
+            axios.post(`https://e-commerce-backend-ueee.onrender.com/getorder`,{token:token})
         .then((res)=>setitems(res.data.orders.length))
     },[items])
 

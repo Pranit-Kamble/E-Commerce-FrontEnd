@@ -17,7 +17,7 @@ const Login = () => {
 
   const handlesubmit = async (e) =>{
     e.preventDefault();
-    const result = await axios.post('http://localhost:4000/login',{name,password})
+    const result = await axios.post('https://e-commerce-backend-ueee.onrender.com/login',{name,password})
     .then((res)=>res.data)
     .catch((err)=>console.log(err))
     // console.log(result.msg)
