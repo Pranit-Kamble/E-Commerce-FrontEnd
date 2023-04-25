@@ -3,23 +3,20 @@ import { Link } from 'react-router-dom'
 import './Navbar.css'
 import profilelogo from '../Images/profile_icon.svg'
 import cartlogo from '../Images/bag_icon.svg'
-import { useContext } from 'react'
-import { store } from '../API/ApiFile'
 import { useState } from 'react'
 import { useEffect } from 'react'
 import { useRef } from 'react'
-import axios, { AxiosHeaders } from 'axios'
+import axios from 'axios'
 
 const Navbar = () => {
     const ul=useRef()
-    const [count,setCount] = useState(0)
     const [nav,setNav]=useState(false)
     const [items,setitems]=useState(0)
     const [name,setName] = useState('Login')
     // const context=useContext(store)
-
-    const token = sessionStorage.getItem('Token')
+    
     useEffect(()=>{
+        const token = sessionStorage.getItem('Token')
         //    setInterval(()=>{
             axios.post(`https://e-commerce-backend-ueee.onrender.com/auth`,{token:token})
             .then((res)=>setName(res.data.name))
@@ -27,7 +24,7 @@ const Navbar = () => {
     },[token])
 
     useEffect(()=>{
-        // const token = sessionStorage.getItem('Token')
+        const token = sessionStorage.getItem('Token')
         setInterval(()=>{
         axios.post(`https://e-commerce-backend-ueee.onrender.com/getorder`,{token:token})
         .then((res)=>{
