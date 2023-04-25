@@ -13,7 +13,7 @@ const Home = () => {
   const [data,setData]=useState('')
 
   useEffect(()=>{
-    axios.post('http://localhost:4000/getproduct',filter)
+    axios.post('https://e-commerce-backend-ueee.onrender.com/getproduct',filter)
     .then((res)=>setData(res.data))
   },[filter])
 
