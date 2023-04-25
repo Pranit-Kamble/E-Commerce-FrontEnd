@@ -1,25 +1,29 @@
-import logo from './logo.svg';
-import './App.css';
+import React from 'react'
+import Navbar from './Components/Navbar/Navbar'
+import RoutesFile from './Components/RoutesFile/RoutesFile'
+import './App.css'
+import Footer from './Components/Footer/Footer'
+import Section from './Components/Section/Section'
+import Section2 from './Components/Section2/Section2'
+import Register from './Components/Login/Register'
+import Login from './Components/Login/Login'
+import Allitems_section from './Components/AllItems/Allitems_section'
+import AppleSection from './Components/AppleSection/AppleSection'
+import StoreSection from './Components/StoreSection/StoreSection'
+<style>
+@import url('https://fonts.googleapis.com/css2?family=Fredoka+One&family=Montserrat&family=Poppins&display=swap');
+</style>
 
-function App() {
+const App = () => {
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+    <div className='body'>
+      <Navbar/>
+      <RoutesFile/>
+      <Section/>
+      <Section2/>
+      <Footer/>
     </div>
-  );
+  )
 }
 
-export default App;
+export default App

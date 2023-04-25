@@ -1,0 +1,70 @@
+table,tr{
+    border-bottom: 1px solid black;
+    border-collapse: collapse;
+    /* background-color: aqua; */
+}
+table{
+    margin-top: 100px;
+    text-align: center;
+    width: 60%;
+}
+td{
+    padding: 5px;
+    height: 150px;
+}
+th{
+    padding: 5px;
+    height: 50px;
+}
+.cartimg{
+    height: 100px;
+}
+.cartcon{
+    margin-top: 50px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+.cartfoot{
+    margin-top: 100px;
+    width: 70%;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-evenly;
+}
+.redeem{
+    border: 2px solid rgb(185, 184, 184);
+    text-align: center;
+    height:40px ;
+    width: 200px;
+}
+.redeembtn{
+    border: none;
+    color: white;
+    background-color: #33A0FF;
+    height: 40px;
+    width: 100px;
+}
+.carthr{
+    padding-top: 10px;
+    font-size: 18px;
+    /* font-weight: bold; */
+    text-align:center;
+    background-color: #F6F7F8;
+    width: 100%;
+    height: 50px;
+}
+.qty-btn{
+    margin: 10px;
+    padding: 4px 10px;
+}
+.carttotal{
+    width: 150px;
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+}
+.carttotal1{
+    display: flex;
+    justify-content: space-between;
+}

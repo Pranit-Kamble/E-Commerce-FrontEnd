@@ -1,0 +1,43 @@
+.store-sec-con{
+    overflow: hidden;
+    width: 100%;
+    font-size: 30px;
+    color: white;
+    height: 540px;
+    position: relative;
+}
+.store-sec-img{
+    height: 100%;
+    width: 100%;
+    background-position: center;
+    filter:brightness(50%);
+    background-image: url('https://images.unsplash.com/photo-1621768216002-5ac171876625?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxzZWFyY2h8NHx8YXBwbGUlMjBsb2dvfGVufDB8fDB8fA%3D%3D&w=1000&q=80');
+}
+.store-sec-head{
+    position: absolute;
+    top: 20%;
+    left: 10%;
+    animation: float 1.4s 1;
+}
+.store-sec-para{
+    position: absolute;
+    top: 50%;
+    left: 6%;
+    animation: float 1.8s 1;
+}
+.store-sec-btn{
+    height: 50px;
+    width: 100px;
+    position: absolute;
+    top: 75%;
+    left: 16%;
+    animation: float 2.2s 1;
+}
+
+@keyframes float {
+    0%{
+        transform: translateX(1000px);
+    }100%{
+        transform: translate(0px);
+    }
+}
