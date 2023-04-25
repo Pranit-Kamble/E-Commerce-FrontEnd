@@ -10,9 +10,11 @@ const CartItems = () => {
     // const context=useContext(store)
     useEffect(()=>{
       const token = sessionStorage.getItem('Token')
-       axios.post('https://e-commerce-backend-ueee.onrender.com/getorder',{token:token})
+      setInterval(()=>{
+        axios.post('https://e-commerce-backend-ueee.onrender.com/getorder',{token:token})
       .then((res)=>setOrder(res.data.orders))
-    },[post])
+      },100)
+    },[])
     // console.log(order)
 
 

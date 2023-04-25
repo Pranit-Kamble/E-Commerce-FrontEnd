@@ -19,14 +19,18 @@ const Navbar = () => {
 
     useEffect(()=>{
             const token = sessionStorage.getItem('Token')
+           setInterval(()=>{
             axios.post(`https://e-commerce-backend-ueee.onrender.com/auth`,{token:token})
             .then((res)=>setName(res.data.name))
+           },500)
     },[])
 
     useEffect(()=>{
         const token = sessionStorage.getItem('Token')
-            axios.post(`https://e-commerce-backend-ueee.onrender.com/getorder`,{token:token})
+        setInterval(()=>{
+        axios.post(`https://e-commerce-backend-ueee.onrender.com/getorder`,{token:token})
         .then((res)=>setitems(res.data.orders.length))
+        },500)
     },[items])
 
     // useEffect(()=>{

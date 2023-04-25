@@ -35,9 +35,9 @@ const Home = () => {
 
   return (
     <div className='body'>
-        {/* <Slider /> */}
+        <Slider />
         <a href='#home'>
-      {/* <AppleSection/> */}
+      <AppleSection/>
         </a>
     <div className='home_container'>
       <h1 id='home' >Best Sellers</h1>
