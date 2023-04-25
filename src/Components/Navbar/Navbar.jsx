@@ -26,17 +26,17 @@ const Navbar = () => {
 
     useEffect(()=>{
         const token = sessionStorage.getItem('Token')
-        setInterval(()=>{
+        // setInterval(()=>{
         axios.post(`https://e-commerce-backend-ueee.onrender.com/getorder`,{token:token})
         .then((res)=>{
-            if(res.data.orders.length === undefined){
+            if(res.data.orders === undefined){
                 setitems(0)
             }
             else{
                 setitems(res.data.orders.length)
             }
         })
-        },100)
+        // },100)
     },[items])
 
     // useEffect(()=>{
