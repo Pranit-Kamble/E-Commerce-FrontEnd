@@ -16,17 +16,17 @@ const Navbar = () => {
     // const context=useContext(store)
     
     const token = sessionStorage.getItem('Token')
-    useEffect(()=>{
-        const token = sessionStorage.getItem('Token')
-        //    setInterval(()=>{
+    // useEffect(()=>{
+        // const token = sessionStorage.getItem('Token')
+           setInterval(()=>{
             axios.post(`https://e-commerce-backend-ueee.onrender.com/auth`,{token:token})
             .then((res)=>setName(res.data.name))
-        //    },100)
-    },[token])
+           },1000)
+    // },[token])
 
     useEffect(()=>{
         const token = sessionStorage.getItem('Token')
-        // setInterval(()=>{
+        setInterval(()=>{
         axios.post(`https://e-commerce-backend-ueee.onrender.com/getorder`,{token:token})
         .then((res)=>{
             if(res.data.orders === undefined){
@@ -36,7 +36,7 @@ const Navbar = () => {
                 setitems(res.data.orders.length)
             }
         })
-        // },100)
+        },1000)
     },[items])
 
     // useEffect(()=>{
