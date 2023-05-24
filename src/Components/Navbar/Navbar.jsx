@@ -15,14 +15,17 @@ const Navbar = () => {
     const [name,setName] = useState('Login')
     // const context=useContext(store)
     
-    const token = sessionStorage.getItem('Token')
-    // useEffect(()=>{
+    var token =''
+   setInterval(()=>{
+     token = sessionStorage.getItem('Token')
+   },1000)
+    useEffect(()=>{
         // const token = sessionStorage.getItem('Token')
            setInterval(()=>{
             axios.post(`https://e-commerce-backend-ueee.onrender.com/auth`,{token:token})
             .then((res)=>setName(res.data.name))
            },1000)
-    // },[token])
+    },[token])
 
     useEffect(()=>{
         const token = sessionStorage.getItem('Token')
