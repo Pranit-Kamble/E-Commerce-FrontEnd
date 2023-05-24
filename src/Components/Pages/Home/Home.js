@@ -26,7 +26,7 @@ const Home = () => {
   const handleless=()=>{
     setshow(prev=>prev-4)
   }
-  const handleclick= async  (order)=>{
+  const handleclick= async (order)=>{
       var token = sessionStorage.getItem('Token')
       await axios.post('https://e-commerce-backend-ueee.onrender.com/order',{order:order,token:token})
       .then((res)=>console.log(res.data))

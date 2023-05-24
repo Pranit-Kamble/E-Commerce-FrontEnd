@@ -11,13 +11,12 @@ const Mackbook = () => {
     .then((res)=>setData(res.data))
   },[])
 
-    const handleclick=(id)=>{
-      data.setcount((prevVal)=>{
-        prevVal.push(id)
-        console.log(prevVal)
-        return prevVal
-      })
-    }
+  const handleclick= async  (order)=>{
+    var token = sessionStorage.getItem('Token')
+    await axios.post('https://e-commerce-backend-ueee.onrender.com/order',{order:order,token:token})
+    .then((res)=>console.log(res.data))
+    .catch((err)=>console.log(err))
+}
   return (
     <div>
         <div className="home_container">
