@@ -49,6 +49,7 @@ const Login = () => {
               <input required type="password"  onChange={(e)=>setPass(e.target.value)} placeholder='Password' id='password'/>
             </div>
             <button  className='register-btn' type='submit'>LOGIN</button>
+            <div>Not registered click <Link style={{color:'red'}} to='/login' >Here</Link> </div>
         </form>
         <img className='register-img' src="https://www.allen.ac.in/ace2324/assets/images/register.png" alt="" />
         </div>

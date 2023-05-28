@@ -73,7 +73,7 @@ const Home = () => {
           (msg==='Not Logged In')?
           <div className='popup'>
           <h1>Login To Add</h1>
-          <Link to='login'><button className='add-cart-btn'>Login</button></Link>
+          <Link to='register'><button className='add-cart-btn'>Login</button></Link>
           <button className='add-cart-btn' onClick={()=>setMsg('close')}>Close</button>
         </div>
         :
