@@ -27,9 +27,9 @@ const Navbar = () => {
            },1000)
     },[token])
 
-    useEffect(()=>{
-        const token = sessionStorage.getItem('Token')
+    // useEffect(()=>{
         setInterval(()=>{
+            const token = sessionStorage.getItem('Token')
         axios.post(`https://e-commerce-backend-ueee.onrender.com/getorder`,{token:token})
         .then((res)=>{
             if(res.data.orders === undefined){
@@ -40,7 +40,7 @@ const Navbar = () => {
             }
         })
         },1000)
-    },[items])
+    // },[items])
 
     // useEffect(()=>{
     //    setInterval(()=>{
