@@ -5,6 +5,7 @@ import { useEffect,useMemo } from 'react'
 import './Cart.css'
 
 const CartItems = () => {
+  const [check,setCheck] = useState(false)
   const [order,setOrder] = useState()
   const [post,setPost] = useState(0)
     // const context=useContext(store)
@@ -24,7 +25,14 @@ const CartItems = () => {
       // console.log(sum)
       }, [order])
 
-
+      const handleCheck=async()=>{
+        setCheck(true)
+        const token = sessionStorage.getItem('Token')
+        await axios.put('https://e-commerce-backend-ueee.onrender.com/checkout',{token:token})
+      // .then((res)=>console.log(res))
+      await axios.post('https://e-commerce-backend-ueee.onrender.com/getorder',{token:token})
+      .then((res)=>setOrder(res.data.orders))
+      }
 
 
     const handleClick = async (data)=>{
@@ -70,6 +78,14 @@ const CartItems = () => {
             })
         }
         </table>
+        {
+          check && 
+          <div className='thank'>
+            <h1>Thank you</h1>
+            <h1>Your Order is on the way</h1>
+            <button className='add-cart-btn' onClick={()=>setCheck(false)}>Close</button>
+          </div>
+        }
         <div className='cartfoot'>
           <div>
             <input placeholder='Voucher code' className='redeem' type="text" />
@@ -81,7 +97,7 @@ const CartItems = () => {
             <div className='carttotal1'><span>Coupon</span><span>No</span></div>
             <hr />
             <div className='carttotal1'><h2>TOTAL</h2><span>₹{sum+50}</span></div>
-            <button className='add-cart-btn'>CheckOut</button>
+            <button className='add-cart-btn' onClick={handleCheck}>CheckOut</button>
           </div>
         </div>
     </div>

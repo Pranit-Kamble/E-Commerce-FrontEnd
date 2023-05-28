@@ -4,6 +4,7 @@ import './Home.css'
 import Slider from '../../Slider/Slider'
 import AppleSection from '../../AppleSection/AppleSection'
 import axios from 'axios'
+import { Link } from 'react-router-dom'
 
 const Home = () => {
   // const context=useContext(store)
@@ -29,9 +30,13 @@ const Home = () => {
   const handleclick= async (order)=>{
       var token = sessionStorage.getItem('Token')
       await axios.post('https://e-commerce-backend-ueee.onrender.com/order',{order:order,token:token})
-      .then((res)=>console.log(res.data))
+      .then((res)=>setMsg(res.data))
       .catch((err)=>console.log(err))
-  }
+      // console.log('msg')
+      // await axios.post(`https://e-commerce-backend-ueee.onrender.com/getorder`,{token:token})
+      //   .then((res)=>console.log(res.data))
+      console.log(msg)
+      }
 
   return (
     <div className='body'>
@@ -63,6 +68,16 @@ const Home = () => {
                     </div>
                 )
             })
+        }
+        {
+          (msg==='Not Logged In')?
+          <div className='popup'>
+          <h1>Login To Add</h1>
+          <Link to='login'><button className='add-cart-btn'>Login</button></Link>
+          <button className='add-cart-btn' onClick={()=>setMsg('close')}>Close</button>
+        </div>
+        :
+        <></>
         }
         </div>
     </div>
