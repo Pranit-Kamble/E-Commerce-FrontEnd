@@ -1,4 +1,4 @@
-import React from 'react'
+import React, { createContext, useState } from 'react'
 import Navbar from './Components/Navbar/Navbar'
 import RoutesFile from './Components/RoutesFile/RoutesFile'
 import './App.css'
@@ -14,15 +14,19 @@ import StoreSection from './Components/StoreSection/StoreSection'
 @import url('https://fonts.googleapis.com/css2?family=Fredoka+One&family=Montserrat&family=Poppins&display=swap');
 </style>
 
+export const context = createContext()
 const App = () => {
+  const [count,setCount] = useState(0)
   return (
-    <div className='body'>
+    <context.Provider value={{count:count,setCount:setCount}}>
+      <div className='body'>
       <Navbar/>
       <RoutesFile/>
       <Section/>
       <Section2/>
       <Footer/>
     </div>
+    </context.Provider>
   )
 }
 

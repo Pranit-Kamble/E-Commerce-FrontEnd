@@ -1,10 +1,14 @@
 import axios from 'axios'
 import React from 'react'
+import { useContext } from 'react'
 import { useState } from 'react'
 import { useEffect,useMemo } from 'react'
+import { context } from '../../App'
 import './Cart.css'
 
 const CartItems = () => {
+  const count = useContext(context).count
+  const setCount = useContext(context).setCount
   const [check,setCheck] = useState(false)
   const [order,setOrder] = useState()
   const [post,setPost] = useState(0)
@@ -16,7 +20,7 @@ const CartItems = () => {
       .then((res)=>setOrder(res.data.orders))
       // },100)
     },[])
-    // console.log(order)
+    // console.log(order.length)
 
 
       var sum = 0
@@ -36,6 +40,7 @@ const CartItems = () => {
 
 
     const handleClick = async (data)=>{
+      setCount(count+1)
       const token  = sessionStorage.getItem('Token')
       setPost(post+1)
       await axios.put('https://e-commerce-backend-ueee.onrender.com/order',{data:data,token:token})
@@ -43,6 +48,7 @@ const CartItems = () => {
       .catch((err)=>console.log(err))
       await axios.post('https://e-commerce-backend-ueee.onrender.com/getorder',{token:token})
       .then((res)=>setOrder(res.data.orders))
+      // console.log(order)
     }
   return (
     <div className='cartcon'>
@@ -97,7 +103,9 @@ const CartItems = () => {
             <div className='carttotal1'><span>Coupon</span><span>No</span></div>
             <hr />
             <div className='carttotal1'><h2>TOTAL</h2><span>₹{sum+50}</span></div>
-            <button className='add-cart-btn' onClick={handleCheck}>CheckOut</button>
+            {
+              (order && order.length===0)?<></>:<button className='add-cart-btn' onClick={handleCheck}>CheckOut</button>
+            }
           </div>
         </div>
     </div>

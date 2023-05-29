@@ -5,9 +5,13 @@ import Slider from '../../Slider/Slider'
 import AppleSection from '../../AppleSection/AppleSection'
 import axios from 'axios'
 import { Link } from 'react-router-dom'
+import { context } from '../../../App'
 
 const Home = () => {
   // const context=useContext(store)
+  const count =useContext(context).count
+  const setCount =useContext(context).setCount
+  // console.log(count.count)
   const [msg,setMsg] = useState('')
   const [filter,setFilter] = useState('')
   const [show,setshow]=useState(4)
@@ -28,6 +32,7 @@ const Home = () => {
     setshow(prev=>prev-4)
   }
   const handleclick= async (order)=>{
+    setCount(count+1)
       var token = sessionStorage.getItem('Token')
       await axios.post('https://e-commerce-backend-ueee.onrender.com/order',{order:order,token:token})
       .then((res)=>setMsg(res.data))
@@ -35,7 +40,7 @@ const Home = () => {
       // console.log('msg')
       // await axios.post(`https://e-commerce-backend-ueee.onrender.com/getorder`,{token:token})
       //   .then((res)=>console.log(res.data))
-      console.log(msg)
+      // console.log(msg)
       }
 
   return (

@@ -7,12 +7,16 @@ import { useState } from 'react'
 import { useEffect } from 'react'
 import { useRef } from 'react'
 import axios from 'axios'
+import { useContext } from 'react'
+import { context } from '../../App'
 
 const Navbar = () => {
+    const count = useContext(context).count 
     const ul=useRef()
     const [nav,setNav]=useState(false)
     const [items,setitems]=useState(0)
     const [name,setName] = useState('Login')
+    // console.log(count)
     // const context=useContext(store)
     
     var token =''
@@ -24,22 +28,32 @@ const Navbar = () => {
            setInterval(()=>{
             axios.post(`https://e-commerce-backend-ueee.onrender.com/auth`,{token:token})
             .then((res)=>setName(res.data.name))
-           },1000)
+           },100)
     },[token])
 
     // useEffect(()=>{
-        setInterval(()=>{
-            const token = sessionStorage.getItem('Token')
+        // setInterval(()=>{
+        useEffect(()=>{
+        setTimeout(()=>{
+        const token = sessionStorage.getItem('Token')
         axios.post(`https://e-commerce-backend-ueee.onrender.com/getorder`,{token:token})
         .then((res)=>{
             if(res.data.orders === undefined){
                 setitems(0)
             }
             else{
-                setitems(res.data.orders.length)
+                var sum = 0
+                res.data.orders.forEach((item)=>{
+                    sum=sum+item.qty
+                })
+                setitems(sum)
+                // setitems(res.data.orders.length)
+                // console.log(res.data.orders)
             }
         })
         },1000)
+        },[count])
+        // },2000)
     // },[items])
 
     // useEffect(()=>{
