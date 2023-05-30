@@ -7,7 +7,8 @@ import { context } from '../../App'
 import './Cart.css'
 
 const CartItems = () => {
-  const [item,setItem] =useState([])
+  const count2 = useContext(context).count 
+  const setCount2 = useContext(context).setCount 
   const count = useContext(context).count
   const setCount = useContext(context).setCount
   const [check,setCheck] = useState(false)
@@ -41,7 +42,7 @@ const CartItems = () => {
             try {
               const verifyUrl = "https://e-commerce-backend-ueee.onrender.com/verify";
               const { data } = await axios.post(verifyUrl, response);
-              console.log(data);
+              console.log(data.message);
             } catch (error) {
               console.log(error);
             }
@@ -55,12 +56,15 @@ const CartItems = () => {
       }
 
       const handleCheck=async()=>{
-        setCheck(true)
+        setCount2(count2+1)
         const {data} = await axios.post('https://e-commerce-backend-ueee.onrender.com/payment',{amount:sum+50})
         console.log(data)
-        initPayment(data.data)
-        const token = sessionStorage.getItem('Token')
-        await axios.put('https://e-commerce-backend-ueee.onrender.com/checkout',{token:token})
+    
+      if(initPayment(data.data)==='Payment verified successfully'){
+        setCheck(true)
+      }
+      const token = sessionStorage.getItem('Token')
+      await axios.put('https://e-commerce-backend-ueee.onrender.com/checkout',{token:token})
       // .then((res)=>console.log(res))
       await axios.post('https://e-commerce-backend-ueee.onrender.com/getorder',{token:token})
       .then((res)=>setOrder(res.data.orders))
