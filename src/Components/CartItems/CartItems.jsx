@@ -7,6 +7,7 @@ import { context } from '../../App'
 import './Cart.css'
 
 const CartItems = () => {
+  const [item,setItem] =useState([])
   const count = useContext(context).count
   const setCount = useContext(context).setCount
   const [check,setCheck] = useState(false)
@@ -29,8 +30,35 @@ const CartItems = () => {
       // console.log(sum)
       }, [order])
 
+      const initPayment = (data)=>{
+        const options = {
+          key: 'rzp_test_1e843KbAQUB6Sn',
+          amount: data.amount,
+          currency: data.currency,
+          description: "Test Transaction",
+          order_id: data.id,
+          handler: async (response) => {
+            try {
+              const verifyUrl = "https://e-commerce-backend-ueee.onrender.com/verify";
+              const { data } = await axios.post(verifyUrl, response);
+              console.log(data);
+            } catch (error) {
+              console.log(error);
+            }
+          },
+          theme: {
+            color: "#3399cc",
+          },
+        };
+        const rzp1 = new window.Razorpay(options);
+        rzp1.open();
+      }
+
       const handleCheck=async()=>{
         setCheck(true)
+        const {data} = await axios.post('https://e-commerce-backend-ueee.onrender.com/payment',{amount:sum+50})
+        console.log(data)
+        initPayment(data.data)
         const token = sessionStorage.getItem('Token')
         await axios.put('https://e-commerce-backend-ueee.onrender.com/checkout',{token:token})
       // .then((res)=>console.log(res))
